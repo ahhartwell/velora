@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f7f9fc;
+  padding-top: 80px;
+}
+
+h1 {
+  font-size: 48px;
+  color: #111827;
+}
+
+p {
+  font-size: 20px;
+  color: #4b5563;
+}
+
+input {
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 16px;
+}
