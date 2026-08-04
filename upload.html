@@ -1,68 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Upload Files - Velora</title>
+<title>Velora - Upload Files</title>
 
 <style>
+
 body {
     font-family: Arial, sans-serif;
-    background: #f8fafc;
-    text-align: center;
-    padding: 80px;
-    color: #111827;
+    background: #f5f7fb;
+    margin: 0;
+    padding: 40px;
 }
 
-.box {
-    background: white;
-    max-width: 500px;
+.container {
+    max-width: 700px;
     margin: auto;
+    background: white;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    border-radius: 15px;
 }
 
 h1 {
-    font-size: 36px;
+    color: #2563eb;
+}
+
+p {
+    color: #555;
 }
 
 input {
-    margin: 30px;
+    margin: 25px;
 }
 
 button {
-    padding: 15px 35px;
-    background: #111827;
+
+    background: #2563eb;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 18px;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+
 }
+
+button:hover {
+    opacity: 0.9;
+}
+
 </style>
 
 </head>
 
+
 <body>
 
-<div class="box">
+
+<div class="container">
+
 
 <h1>Upload your files</h1>
 
 <p>
-Upload your business documents for AI analysis.
+Upload your business files and let Velora analyze your company.
 </p>
 
-<input type="file">
+
+<input type="file" id="file">
+
 
 <br>
 
-<button>
+
+<button onclick="analyze()">
 Analyze
 </button>
 
+
 </div>
 
+
+
+<script>
+
+function analyze(){
+
+    let file = document.getElementById("file").files[0];
+
+    if(!file){
+
+        alert("Please upload a file first");
+
+        return;
+
+    }
+
+
+    window.location.href = "analysis.html";
+
+}
+
+
+</script>
+
+
 </body>
+
 </html>
