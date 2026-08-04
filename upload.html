@@ -6,47 +6,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora - Upload Files</title>
+<title>Velora Upload</title>
 
 <style>
 
-body {
-    font-family: Arial, sans-serif;
-    background:#f5f7fb;
-    margin:0;
-    padding:40px;
+body{
+font-family:Arial;
+background:#f5f7fb;
+padding:40px;
 }
 
-.box {
-    max-width:700px;
-    margin:auto;
-    background:white;
-    padding:50px;
-    text-align:center;
-    border-radius:20px;
+.box{
+max-width:700px;
+margin:auto;
+background:white;
+padding:40px;
+text-align:center;
+border-radius:20px;
 }
 
-h1 {
-    color:#2563eb;
+h1{
+color:#2563eb;
 }
 
-p {
-    color:#555;
-    font-size:18px;
-}
-
-input {
-    margin:25px;
-}
-
-button {
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:16px 35px;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
+button{
+background:#2563eb;
+color:white;
+border:0;
+padding:15px 35px;
+border-radius:10px;
+cursor:pointer;
 }
 
 </style>
@@ -66,26 +55,32 @@ Upload your files
 Upload your business files and let Velora analyze your company.
 </p>
 
+<input type="file" id="file">
 
-<input type="file">
+<br><br>
 
-
-<br>
-
-
-<button onclick="goResult()">
+<button onclick="analyze()">
 Analyze
 </button>
-
 
 </div>
 
 
 <script>
 
-function goResult(){
+function analyze(){
 
-window.location.href="result.html";
+let file=document.getElementById("file").files[0];
+
+if(!file){
+
+alert("Please upload a file first");
+
+return;
+
+}
+
+location.href="result.html";
 
 }
 
