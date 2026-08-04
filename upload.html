@@ -12,46 +12,41 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    margin: 0;
-    padding: 40px;
+    background:#f5f7fb;
+    margin:0;
+    padding:40px;
 }
 
-.container {
-    max-width: 700px;
-    margin: auto;
-    background: white;
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
+.box {
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:50px;
+    text-align:center;
+    border-radius:20px;
 }
 
 h1 {
-    color: #2563eb;
+    color:#2563eb;
 }
 
 p {
-    color: #555;
+    color:#555;
+    font-size:18px;
 }
 
 input {
-    margin: 25px;
+    margin:25px;
 }
 
 button {
-
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 15px 35px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-
-}
-
-button:hover {
-    opacity: 0.9;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:16px 35px;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
 }
 
 </style>
@@ -61,24 +56,24 @@ button:hover {
 
 <body>
 
+<div class="box">
 
-<div class="container">
-
-
-<h1>Upload your files</h1>
+<h1>
+Upload your files
+</h1>
 
 <p>
 Upload your business files and let Velora analyze your company.
 </p>
 
 
-<input type="file" id="file">
+<input type="file">
 
 
 <br>
 
 
-<button onclick="analyze()">
+<button onclick="goResult()">
 Analyze
 </button>
 
@@ -86,26 +81,13 @@ Analyze
 </div>
 
 
-
 <script>
 
-function analyze(){
+function goResult(){
 
-    let file = document.getElementById("file").files[0];
-
-    if(!file){
-
-        alert("Please upload a file first");
-
-        return;
-
-    }
-
-
-    window.location.href = "analysis.html";
+window.location.href="result.html";
 
 }
-
 
 </script>
 
