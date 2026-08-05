@@ -1,31 +1,35 @@
-function loadAnalysis() {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const stored = localStorage.getItem("velora-analysis");
+    const analysis = Storage.load();
 
-    if (!stored) {
+    if (!analysis) {
+
+        Notifications.warning("No analysis found.");
+
+        Router.go("index.html");
+
         return;
+
     }
 
-    const analysis = JSON.parse(stored);
-
     document.getElementById("summary").textContent =
-        analysis.summary;
+        analysis.summary || "";
 
     document.getElementById("problems").innerHTML =
-        analysis.problems
+        (analysis.problems || [])
             .map(item => `<li>${item}</li>`)
             .join("");
 
     document.getElementById("opportunities").innerHTML =
-        analysis.opportunities
+        (analysis.opportunities || [])
             .map(item => `<li>${item}</li>`)
             .join("");
 
     document.getElementById("recommendations").innerHTML =
-        analysis.recommendations
+        (analysis.recommendations || [])
             .map(item => `<li>${item}</li>`)
             .join("");
 
-}
+    Analytics.track("result_viewed");
 
-window.onload = loadAnalysis;
+});
