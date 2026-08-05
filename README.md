@@ -4,6 +4,7 @@
 
 Velora helps business owners upload business files and receive AI-powered business insights.
 
+
 ## Features
 
 - Upload Excel files
@@ -39,6 +40,7 @@ Business Report
 
 
 ## Tech Stack
+
 
 ### Frontend
 
@@ -92,38 +94,5 @@ Current Version:
 
 Install dependencies:
 
+```bash
 npm install
-
-
-## Start Server
-
-Run:
-
-npm start
-
-
-## Open Application
-
-http://localhost:3000
-
-
-## Supported Files
-
-- Excel (.xlsx)
-- PDF (.pdf)
-- Word (.docx)
-
-
-## Future Development
-
-- Real AI model integration
-- OpenAI integration
-- Dynamic recommendations
-- Business dashboard
-- User accounts
-- Business history
-
-
-## Vision
-
-Build Velora as an AI Operating System for Business.
