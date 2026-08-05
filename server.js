@@ -2,49 +2,78 @@ const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+if (!fs.existsSync("uploads")) {
+    fs.mkdirSync("uploads");
+}
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
+    destination: function (req, file, cb) {
         cb(null, "uploads/");
     },
-    filename: function(req, file, cb){
+    filename: function (req, file, cb) {
         cb(null, Date.now() + "-" + file.originalname);
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 20 * 1024 * 1024
+    }
+});
 
 app.use(express.static(__dirname));
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
 app.post("/upload", upload.single("file"), (req, res) => {
 
-    if(!req.file){
+    if (!req.file) {
 
         return res.status(400).json({
-            success:false,
-            message:"No file uploaded."
+            success: false,
+            message: "Please upload a file."
         });
 
     }
 
     res.json({
-        success:true,
-        file:req.file.filename,
-        original:req.file.originalname,
-        message:"File uploaded successfully."
+        success: true,
+        fileName: req.file.originalname,
+        savedAs: req.file.filename,
+        size: req.file.size,
+        message: "File uploaded successfully."
     });
 
 });
 
-const PORT = 3000;
+app.get("/health", (req, res) => {
+
+    res.json({
+        success: true,
+        status: "Velora Server Running"
+    });
+
+});
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
 
-    console.log(`Velora server is running on http://localhost:${PORT}`);
+    console.log("================================");
+    console.log("Velora AI Business Analyst");
+    console.log("Server Started Successfully");
+    console.log(`http://localhost:${PORT}`);
+    console.log("================================");
 
 });
