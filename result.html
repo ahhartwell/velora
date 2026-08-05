@@ -21,38 +21,66 @@ padding:40px;
 max-width:900px;
 margin:auto;
 background:white;
-padding:40px;
+padding:50px;
 border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 h1{
 color:#2563eb;
 text-align:center;
+margin-bottom:10px;
 }
 
 .subtitle{
 text-align:center;
-color:#555;
+color:#666;
 margin-bottom:30px;
 }
 
 .file{
 background:#e0f2fe;
-padding:15px;
-border-radius:10px;
-margin-bottom:20px;
+padding:18px;
+border-radius:12px;
+margin-bottom:25px;
 font-size:18px;
 }
 
 .card{
-background:#f1f5f9;
+background:#f8fafc;
 padding:20px;
 margin-top:20px;
 border-radius:12px;
+border-left:5px solid #2563eb;
 }
 
 h2{
 color:#2563eb;
+margin-top:0;
+}
+
+ul{
+padding-left:20px;
+}
+
+.buttons{
+margin-top:35px;
+text-align:center;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+margin:10px;
+}
+
+button:hover{
+opacity:.9;
 }
 
 </style>
@@ -63,7 +91,7 @@ color:#2563eb;
 
 <div class="box">
 
-<h1>Velora AI Report</h1>
+<h1>Velora AI Business Report</h1>
 
 <p class="subtitle">
 Your business analysis is complete.
@@ -84,7 +112,7 @@ No file selected
 <h2>Executive Summary</h2>
 
 <p>
-Velora analyzed your business data and found important insights.
+Velora analyzed your business data and discovered valuable business insights and opportunities for growth.
 </p>
 
 </div>
@@ -94,9 +122,9 @@ Velora analyzed your business data and found important insights.
 <h2>Problems</h2>
 
 <ul>
-<li>High costs detected.</li>
-<li>Sales opportunities missed.</li>
-<li>Need better data-driven decisions.</li>
+<li>High operating costs detected.</li>
+<li>Sales opportunities are being missed.</li>
+<li>Business decisions need stronger data support.</li>
 </ul>
 
 </div>
@@ -106,22 +134,34 @@ Velora analyzed your business data and found important insights.
 <h2>Opportunities</h2>
 
 <ul>
-<li>Increase revenue from strong products.</li>
+<li>Increase revenue from top-performing products.</li>
 <li>Improve customer retention.</li>
-<li>Build better business strategies.</li>
+<li>Reduce unnecessary expenses.</li>
 </ul>
 
 </div>
 
 <div class="card">
 
-<h2>Action Plan</h2>
+<h2>Next Actions</h2>
 
 <ul>
-<li>Review monthly performance.</li>
-<li>Reduce unnecessary expenses.</li>
-<li>Track improvements every week.</li>
+<li>Review monthly business reports.</li>
+<li>Create a 30-day improvement plan.</li>
+<li>Track weekly performance.</li>
 </ul>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="location.href='upload.html'">
+Analyze Another File
+</button>
+
+<button onclick="location.href='index.html'">
+Back to Home
+</button>
 
 </div>
 
