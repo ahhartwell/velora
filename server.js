@@ -22,24 +22,18 @@ if(!fs.existsSync("uploads")){
 const storage = multer.diskStorage({
 
     destination:function(req,file,cb){
-
         cb(null,"uploads/");
-
     },
 
     filename:function(req,file,cb){
-
         cb(null,Date.now()+"-"+file.originalname);
-
     }
 
 });
 
 
 const upload = multer({
-
     storage:storage
-
 });
 
 
@@ -55,7 +49,8 @@ async function analyzeFile(file){
         problems:[],
         opportunities:[],
         rows:0,
-        columns:[]
+        columns:[],
+        metrics:{}
 
     };
 
@@ -77,7 +72,9 @@ async function analyzeFile(file){
         XLSX.utils.sheet_to_json(sheet);
 
 
+
         result.rows = data.length;
+
 
 
         if(data.length > 0){
@@ -88,8 +85,67 @@ async function analyzeFile(file){
         }
 
 
+
+        let totalNumbers = 0;
+
+
+        data.forEach(row=>{
+
+            Object.values(row).forEach(value=>{
+
+                if(typeof value === "number"){
+
+                    totalNumbers += value;
+
+                }
+
+            });
+
+        });
+
+
+
+        result.metrics.totalNumbers =
+        totalNumbers;
+
+
+
+        let salesColumn =
+        result.columns.find(col =>
+            col.toLowerCase().includes("sales")
+            ||
+            col.toLowerCase().includes("revenue")
+            ||
+            col.toLowerCase().includes("amount")
+        );
+
+
+
+        if(salesColumn){
+
+            let salesTotal = 0;
+
+
+            data.forEach(row=>{
+
+                if(typeof row[salesColumn] === "number"){
+
+                    salesTotal += row[salesColumn];
+
+                }
+
+            });
+
+
+            result.metrics.sales =
+            salesTotal;
+
+        }
+
+
+
         result.summary =
-        "Velora analyzed Excel business data and extracted business information.";
+        "Velora analyzed your Excel business data and generated business insights.";
 
 
     }
@@ -112,7 +168,7 @@ async function analyzeFile(file){
 
 
         result.summary =
-        "Velora analyzed PDF business documents successfully.";
+        "Velora analyzed your PDF business report successfully.";
 
 
     }
@@ -135,7 +191,7 @@ async function analyzeFile(file){
 
 
         result.summary =
-        "Velora analyzed Word business documents successfully.";
+        "Velora analyzed your Word business document successfully.";
 
 
     }
@@ -155,9 +211,9 @@ async function analyzeFile(file){
 
     result.problems = [
 
-        "Review business costs.",
-        "Analyze sales performance.",
-        "Find areas for improvement."
+        "Review business costs and expenses.",
+        "Analyze performance indicators.",
+        "Find areas that need improvement."
 
     ];
 
@@ -167,14 +223,13 @@ async function analyzeFile(file){
 
         "Increase profitable products.",
         "Improve customer growth.",
-        "Optimize business expenses."
+        "Optimize business operations."
 
     ];
 
 
 
     return result;
-
 
 }
 
@@ -189,7 +244,6 @@ app.post("/upload",upload.single("file"),async(req,res)=>{
         return res.status(400).json({
 
             success:false,
-
             message:"No file uploaded."
 
         });
@@ -216,7 +270,6 @@ app.post("/upload",upload.single("file"),async(req,res)=>{
     });
 
 
-
 });
 
 
@@ -238,7 +291,7 @@ app.listen(PORT,()=>{
 
     console.log("--------------------------------");
     console.log("Velora AI Business Analyst");
-    console.log("Server running:");
+    console.log("Server running at:");
     console.log("http://localhost:3000");
     console.log("--------------------------------");
 
