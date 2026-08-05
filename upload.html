@@ -6,47 +6,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora Upload</title>
+<title>Velora - Upload Files</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f5f7fb;
-padding:40px;
 margin:0;
+padding:40px;
 }
 
 .box{
 max-width:700px;
 margin:auto;
 background:white;
-padding:40px;
-text-align:center;
+padding:50px;
 border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 h1{
 color:#2563eb;
+margin-bottom:10px;
 }
 
 p{
-color:#555;
-font-size:18px;
+color:#666;
+margin-bottom:30px;
 }
 
-input{
-margin:25px;
+.upload{
+border:2px dashed #2563eb;
+border-radius:15px;
+padding:40px;
+background:#f8fbff;
+}
+
+input[type=file]{
+margin-top:20px;
+}
+
+#fileName{
+margin-top:20px;
+font-weight:bold;
+color:#2563eb;
 }
 
 button{
+margin-top:30px;
 background:#2563eb;
 color:white;
-border:0;
+border:none;
 padding:15px 35px;
+font-size:16px;
 border-radius:10px;
 cursor:pointer;
-font-size:16px;
 }
 
 button:hover{
@@ -61,17 +77,23 @@ opacity:.9;
 
 <div class="box">
 
-<h1>
-Upload your files
-</h1>
+<h1>Upload your files</h1>
 
 <p>
 Upload your business files and let Velora analyze your company.
 </p>
 
-<input type="file" id="file">
+<div class="upload">
 
-<br><br>
+<p>Choose an Excel, PDF, or Word file</p>
+
+<input type="file" id="file" onchange="showName()">
+
+<div id="fileName">
+No file selected
+</div>
+
+</div>
 
 <button onclick="analyze()">
 Analyze
@@ -81,9 +103,21 @@ Analyze
 
 <script>
 
+function showName(){
+
+const file=document.getElementById("file").files[0];
+
+if(file){
+
+document.getElementById("fileName").textContent=file.name;
+
+}
+
+}
+
 function analyze(){
 
-let file = document.getElementById("file").files[0];
+const file=document.getElementById("file").files[0];
 
 if(!file){
 
@@ -93,9 +127,9 @@ return;
 
 }
 
-localStorage.setItem("fileName", file.name);
+localStorage.setItem("fileName",file.name);
 
-location.href = "result.html";
+window.location.href="result.html";
 
 }
 
