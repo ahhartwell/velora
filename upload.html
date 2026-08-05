@@ -14,6 +14,7 @@ body{
 font-family:Arial;
 background:#f5f7fb;
 padding:40px;
+margin:0;
 }
 
 .box{
@@ -29,6 +30,15 @@ h1{
 color:#2563eb;
 }
 
+p{
+color:#555;
+font-size:18px;
+}
+
+input{
+margin:25px;
+}
+
 button{
 background:#2563eb;
 color:white;
@@ -36,12 +46,16 @@ border:0;
 padding:15px 35px;
 border-radius:10px;
 cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+opacity:.9;
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -65,12 +79,11 @@ Analyze
 
 </div>
 
-
 <script>
 
 function analyze(){
 
-let file=document.getElementById("file").files[0];
+let file = document.getElementById("file").files[0];
 
 if(!file){
 
@@ -80,12 +93,13 @@ return;
 
 }
 
-location.href="result.html";
+localStorage.setItem("fileName", file.name);
+
+location.href = "result.html";
 
 }
 
 </script>
-
 
 </body>
 
