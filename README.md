@@ -1,98 +1,68 @@
 # Velora
 
-## AI Business Analyst for your company
-
-Velora helps business owners upload business files and receive AI-powered business insights.
-
+Velora is an AI Business Analyst that helps companies understand their business using artificial intelligence.
 
 ## Features
 
-- Upload Excel files
-- Upload PDF files
-- Upload Word documents
-- Business file processing
-- Executive Summary
-- Problems Detection
-- Business Opportunities
-- Action Recommendations
-- PDF Business Report Export
+- Upload business files
+- Analyze business data with AI
+- Discover problems
+- Find opportunities
+- Get recommendations
+- Generate reports
 
-
-## Current Workflow
-
-Home
-
-↓
-
-Upload Business File
-
-↓
-
-Velora Processing
-
-↓
-
-Business Analysis
-
-↓
-
-Business Report
-
-
-## Tech Stack
-
-
-### Frontend
-
-- HTML
-- CSS
-- JavaScript
-
-
-### Backend
+## Technology
 
 - Node.js
 - Express
-- Multer
-
-
-### File Processing
-
-- XLSX
-- PDF Parser
-- Mammoth Word Reader
-- PDFKit
-
-
-## Project Status
-
-Current Version:
-
-0.1.1 MVP
-
-
-## Completed
-
-✅ Landing page
-
-✅ File upload system
-
-✅ Excel support
-
-✅ PDF support
-
-✅ Word support
-
-✅ Business analysis engine
-
-✅ Business report page
-
-✅ PDF report generation
-
+- OpenAI API
 
 ## Installation
 
-Install dependencies:
-
 ```bash
 npm install
+```
+
+## Environment
+
+Create a `.env` file:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+PORT=3000
+```
+
+## Start
+
+```bash
+npm start
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+## API
+
+### POST /api/analyze
+
+Request:
+
+```json
+{
+  "data": "Business data here..."
+}
+```
+
+Response:
+
+```json
+{
+  "summary": "",
+  "problems": [],
+  "opportunities": [],
+  "recommendations": []
+}
+```
