@@ -12,14 +12,14 @@ You are Velora AI Business Analyst.
 
 Analyze the following business data.
 
-Your job:
-- Find the most important business problems.
+Your mission:
+- Identify the most important business problems.
 - Discover growth opportunities.
-- Provide practical next actions.
+- Suggest practical actions.
 
 Return ONLY valid JSON.
 
-Required format:
+Format:
 
 {
   "summary": "",
@@ -56,17 +56,14 @@ ${data}
         },
 
         messages: [
-
             {
                 role: "system",
                 content: "You are Velora AI Business Analyst."
             },
-
             {
                 role: "user",
                 content: prompt
             }
-
         ],
 
         temperature: 0.2
