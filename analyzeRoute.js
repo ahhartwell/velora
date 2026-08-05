@@ -1,8 +1,8 @@
 const express = require("express");
+
 const router = express.Router();
 
-const analyzeBusinessData = require("../services/aiAnalyzer");
-
+const aiAnalyzer = require("./aiAnalyzer");
 
 router.post("/analyze", async (req, res) => {
 
@@ -10,26 +10,23 @@ router.post("/analyze", async (req, res) => {
 
         const { data } = req.body;
 
-
         if (!data) {
 
             return res.status(400).json({
+
                 error: "Business data is required."
+
             });
 
         }
 
+        const analysis = await aiAnalyzer(data);
 
-        const result = await analyzeBusinessData(data);
-
-
-        res.json(result);
-
+        res.json(analysis);
 
     } catch (error) {
 
         console.error(error);
-
 
         res.status(500).json({
 
@@ -40,6 +37,5 @@ router.post("/analyze", async (req, res) => {
     }
 
 });
-
 
 module.exports = router;
