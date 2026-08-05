@@ -3,101 +3,40 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Velora Analyzing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Velora Loading</title>
 
-body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:0;
-}
-
-.box{
-background:white;
-padding:50px;
-border-radius:20px;
-text-align:center;
-width:420px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.loader{
-width:70px;
-height:70px;
-border:6px solid #dbeafe;
-border-top:6px solid #2563eb;
-border-radius:50%;
-margin:auto;
-animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-
-from{
-transform:rotate(0deg);
-}
-
-to{
-transform:rotate(360deg);
-}
-
-}
-
-h1{
-color:#2563eb;
-}
-
-p{
-color:#666;
-}
-
-</style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <div class="container">
 
-<div class="box">
+        <h1>Velora AI</h1>
 
+        <h2>Analyzing Your Business</h2>
 
-<div class="loader"></div>
+        <p id="loadingText">
+            Preparing analysis...
+        </p>
 
+        <div id="loader">
+            Loading...
+        </div>
 
-<h1>
-Velora AI is analyzing
-</h1>
+    </div>
 
-
-<p>
-Reading your business file and preparing your report...
-</p>
-
-
-</div>
-
-
-
-<script>
-
-setTimeout(function(){
-
-window.location.href="result.html";
-
-},3000);
-
-
-</script>
-
+    <script src="constants.js"></script>
+    <script src="config.js"></script>
+    <script src="environment.js"></script>
+    <script src="loader.js"></script>
+    <script src="time.js"></script>
+    <script src="loading.js"></script>
 
 </body>
 
