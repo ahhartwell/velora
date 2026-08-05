@@ -1,23 +1,20 @@
-function getBusinessData() {
+async function analyzeBusiness() {
 
     const input = document.getElementById("businessData");
 
     if (!input) {
-        return "";
+
+        Notifications.error("Business data field not found.");
+
+        return;
+
     }
 
-    return input.value.trim();
-
-}
-
-
-async function analyzeBusiness() {
-
-    const data = getBusinessData();
+    const data = input.value.trim();
 
     if (!data) {
 
-        alert("Please enter your business data.");
+        Notifications.warning("Please enter your business data.");
 
         return;
 
@@ -25,34 +22,29 @@ async function analyzeBusiness() {
 
     try {
 
-        const response = await fetch("/api/analyze", {
+        Loader.show();
 
-            method: "POST",
+        Analytics.track("analysis_started");
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+        const result = await API.analyze(data);
 
-            body: JSON.stringify({
-                data
-            })
+        Storage.save(result);
 
-        });
+        History.add(result);
 
-        const result = await response.json();
+        Analytics.track("analysis_completed");
 
-        localStorage.setItem(
-            "velora-analysis",
-            JSON.stringify(result)
-        );
-
-        window.location.href = "result.html";
+        Router.go("result.html");
 
     } catch (error) {
 
         console.error(error);
 
-        alert("Analysis failed.");
+        Notifications.error("Analysis failed.");
+
+    } finally {
+
+        Loader.hide();
 
     }
 
