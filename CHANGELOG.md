@@ -10,17 +10,40 @@ All notable changes to Velora will be documented here.
 - Upload page
 - Loading page
 - AI Business Report page
-- Local file name display
-- Basic Node.js server
-- File upload endpoint
-- Project documentation
+- File upload system
+- Excel file reading
+- PDF file reading
+- Word file reading
+- Basic business analysis engine
+- Node.js Express server
+- Multer file upload system
 
-### Planned
+### Workflow
 
-- Excel file reader
-- PDF reader
-- Word document reader
+Home
+
+↓
+
+Upload Business File
+
+↓
+
+Process File
+
+↓
+
+Analyze Data
+
+↓
+
+Generate Business Report
+
+
+## Planned
+
+- Real AI analysis
 - OpenAI integration
-- Real AI-generated business reports
+- Automatic recommendations
 - PDF export
 - User dashboard
+- Business history
