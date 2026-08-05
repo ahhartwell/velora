@@ -17,34 +17,26 @@ if(!fs.existsSync("uploads")){
     fs.mkdirSync("uploads");
 }
 
-
 const storage = multer.diskStorage({
 
     destination:function(req,file,cb){
-
         cb(null,"uploads/");
-
     },
 
     filename:function(req,file,cb){
-
         cb(null,Date.now()+"-"+file.originalname);
-
     }
 
 });
-
 
 const upload = multer({
     storage:storage
 });
 
-
 app.use(express.static(__dirname));
 
 
 async function analyzeFile(file){
-
 
     let result = {
 
@@ -61,44 +53,35 @@ async function analyzeFile(file){
 
     if(name.endsWith(".xlsx")){
 
-
         const workbook = XLSX.readFile(file.path);
 
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
 
         const data = XLSX.utils.sheet_to_json(sheet);
 
-
         result.rows = data.length;
 
         result.summary =
         "Velora analyzed Excel business data successfully.";
-
 
     }
 
 
     else if(name.endsWith(".pdf")){
 
-
         const buffer = fs.readFileSync(file.path);
 
         const data = await pdf(buffer);
 
-
         result.summary =
         "Velora analyzed PDF business report successfully.";
 
-
-        result.rows =
-        data.text.length;
-
+        result.rows = data.text.length;
 
     }
 
 
     else if(name.endsWith(".docx")){
-
 
         const data = await mammoth.extractRawText({
 
@@ -106,24 +89,18 @@ async function analyzeFile(file){
 
         });
 
-
         result.summary =
         "Velora analyzed Word document successfully.";
 
-
-        result.rows =
-        data.value.length;
-
+        result.rows = data.value.length;
 
     }
 
 
     else{
 
-
         result.summary =
-        "File uploaded successfully. Format analysis coming soon.";
-
+        "File uploaded successfully.";
 
     }
 
@@ -167,9 +144,7 @@ app.post("/upload",upload.single("file"),async(req,res)=>{
     }
 
 
-    const analysis =
-    await analyzeFile(req.file);
-
+    const analysis = await analyzeFile(req.file);
 
 
     res.json({
@@ -194,7 +169,6 @@ app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"index.html"));
 
 });
-
 
 
 const PORT = 3000;
