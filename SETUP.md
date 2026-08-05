@@ -11,3 +11,6 @@ Before running Velora, install:
 ## Installation
 
 Open the project folder and run:
+
+```bash
+npm install
