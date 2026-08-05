@@ -1,6 +1,20 @@
-const formData = new FormData();
-
 const fileInput = document.getElementById("file");
+
+function showName(){
+
+    const file = fileInput.files[0];
+
+    if(file){
+
+        document.getElementById("fileName").textContent = file.name;
+
+    }else{
+
+        document.getElementById("fileName").textContent = "No file selected";
+
+    }
+
+}
 
 async function analyze(){
 
@@ -13,6 +27,8 @@ async function analyze(){
         return;
 
     }
+
+    const formData = new FormData();
 
     formData.append("file", file);
 
@@ -32,7 +48,9 @@ async function analyze(){
 
         if(data.success){
 
-            window.location.href="loading.html";
+            localStorage.setItem("uploadedFile", JSON.stringify(data));
+
+            window.location.href = "loading.html";
 
         }else{
 
@@ -42,7 +60,7 @@ async function analyze(){
 
     }catch(error){
 
-        alert("Server connection failed.");
+        alert("Unable to connect to the Velora server.");
 
     }
 
