@@ -38,29 +38,22 @@ color:#666;
 
 .info,
 .card{
-
 background:#f8fafc;
 padding:20px;
 margin-top:20px;
 border-radius:12px;
 border-left:5px solid #2563eb;
-
 }
 
 .info{
-
 background:#e0f2fe;
-
 }
 
 h2{
-
 color:#2563eb;
-
 }
 
 button{
-
 background:#2563eb;
 color:white;
 border:0;
@@ -68,7 +61,6 @@ padding:15px 30px;
 border-radius:10px;
 cursor:pointer;
 margin-top:30px;
-
 }
 
 </style>
@@ -100,24 +92,30 @@ Your business analysis is complete.
 <span id="fileName">-</span>
 </p>
 
-
 <p>
 <strong>File Size:</strong>
 <span id="fileSize">-</span>
 </p>
-
 
 <p>
 <strong>Records:</strong>
 <span id="rows">-</span>
 </p>
 
-
 <p>
 <strong>Columns:</strong>
 <span id="columns">-</span>
 </p>
 
+<p>
+<strong>Total Numbers:</strong>
+<span id="totalNumbers">-</span>
+</p>
+
+<p>
+<strong>Sales Total:</strong>
+<span id="sales">-</span>
+</p>
 
 </div>
 
@@ -209,13 +207,12 @@ document.getElementById("fileSize").textContent =
 report.size + " bytes";
 
 
-document.getElementById("summary").textContent =
-report.analysis.summary;
-
-
-
 document.getElementById("rows").textContent =
 report.analysis.rows || "-";
+
+
+document.getElementById("summary").textContent =
+report.analysis.summary;
 
 
 
@@ -223,6 +220,19 @@ if(report.analysis.columns){
 
 document.getElementById("columns").textContent =
 report.analysis.columns.join(", ");
+
+}
+
+
+
+if(report.analysis.metrics){
+
+document.getElementById("totalNumbers").textContent =
+report.analysis.metrics.totalNumbers || "-";
+
+
+document.getElementById("sales").textContent =
+report.analysis.metrics.sales || "-";
 
 }
 
