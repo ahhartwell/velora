@@ -36,26 +36,30 @@ Business Analysis
 
 Business Report
 
+
 ## Tech Stack
 
-### Frontend
+## Frontend
 
 - HTML
 - CSS
 - JavaScript
 
-### Backend
+
+## Backend
 
 - Node.js
 - Express
 - Multer
 
-### File Processing
+
+## File Processing
 
 - XLSX
 - PDF Parser
 - Mammoth Word Reader
 - PDFKit
+
 
 ## Project Status
 
@@ -63,16 +67,25 @@ Current Version:
 
 0.1.1 MVP
 
-Completed:
 
-✅ Landing page  
-✅ File upload system  
-✅ Excel support  
-✅ PDF support  
-✅ Word support  
-✅ Business analysis engine  
-✅ Business report page  
-✅ PDF report generation  
+## Completed
+
+✅ Landing page
+
+✅ File upload system
+
+✅ Excel support
+
+✅ PDF support
+
+✅ Word support
+
+✅ Business analysis engine
+
+✅ Business report page
+
+✅ PDF report generation
+
 
 ## Installation
 
