@@ -3,253 +3,80 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Velora AI Business Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Velora Results</title>
 
-body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-margin:0;
-padding:40px;
-}
-
-.box{
-max-width:900px;
-margin:auto;
-background:white;
-padding:50px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-h1{
-color:#2563eb;
-text-align:center;
-}
-
-.subtitle{
-text-align:center;
-color:#666;
-}
-
-.info,.card{
-
-background:#f8fafc;
-padding:20px;
-margin-top:20px;
-border-radius:12px;
-border-left:5px solid #2563eb;
-
-}
-
-.info{
-background:#e0f2fe;
-}
-
-h2{
-color:#2563eb;
-}
-
-button{
-
-background:#2563eb;
-color:white;
-border:0;
-padding:15px 30px;
-border-radius:10px;
-cursor:pointer;
-margin:10px;
-
-}
-
-</style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
-
-<div class="box">
-
-
-<h1>
-Velora AI Business Report
-</h1>
-
-
-<p class="subtitle">
-Your business analysis is complete.
-</p>
-
-
-
-<div class="info">
-
-<p><strong>File Name:</strong>
-<span id="fileName">-</span></p>
-
-<p><strong>File Size:</strong>
-<span id="fileSize">-</span></p>
-
-<p><strong>Records:</strong>
-<span id="rows">-</span></p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Executive Summary</h2>
-
-<p id="summary">-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Problems Detected</h2>
-
-<ul id="problems"></ul>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Business Opportunities</h2>
-
-<ul id="opportunities"></ul>
-
-</div>
-
-
-
-<button onclick="downloadPDF()">
-Download PDF Report
-</button>
-
-
-<button onclick="location.href='upload.html'">
-Analyze Another File
-</button>
-
-
-
-</div>
-
-
-
-<script>
-
-
-const report =
-JSON.parse(localStorage.getItem("veloraReport"));
-
-
-
-if(report){
-
-
-document.getElementById("fileName").textContent =
-report.fileName;
-
-
-document.getElementById("fileSize").textContent =
-report.size + " bytes";
-
-
-document.getElementById("rows").textContent =
-report.analysis.rows || "-";
-
-
-document.getElementById("summary").textContent =
-report.analysis.summary;
-
-
-
-report.analysis.problems.forEach(item=>{
-
-let li=document.createElement("li");
-
-li.textContent=item;
-
-document.getElementById("problems").appendChild(li);
-
-});
-
-
-
-report.analysis.opportunities.forEach(item=>{
-
-let li=document.createElement("li");
-
-li.textContent=item;
-
-document.getElementById("opportunities").appendChild(li);
-
-});
-
-
-}
-
-
-
-async function downloadPDF(){
-
-
-const report =
-JSON.parse(localStorage.getItem("veloraReport"));
-
-
-
-const response =
-await fetch("/create-pdf",{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify(report)
-
-});
-
-
-
-const data =
-await response.json();
-
-
-
-if(data.success){
-
-window.open(data.file);
-
-}else{
-
-alert("PDF creation failed");
-
-}
-
-
-}
-
-
-
-</script>
-
+    <div class="container">
+
+        <h1>Analysis Report</h1>
+
+        <h2>Executive Summary</h2>
+
+        <p id="summary"></p>
+
+        <h2>Problems</h2>
+
+        <ul id="problems"></ul>
+
+        <h2>Opportunities</h2>
+
+        <ul id="opportunities"></ul>
+
+        <h2>Recommendations</h2>
+
+        <ul id="recommendations"></ul>
+
+        <br>
+
+        <button onclick="Router.go('index.html')">
+            New Analysis
+        </button>
+
+    </div>
+
+    <script src="constants.js"></script>
+    <script src="config.js"></script>
+    <script src="environment.js"></script>
+    <script src="browser.js"></script>
+    <script src="device.js"></script>
+    <script src="network.js"></script>
+    <script src="storage.js"></script>
+    <script src="storageManager.js"></script>
+    <script src="preferences.js"></script>
+    <script src="helpers.js"></script>
+    <script src="utils.js"></script>
+    <script src="formatter.js"></script>
+    <script src="validator.js"></script>
+    <script src="logger.js"></script>
+    <script src="loggerClient.js"></script>
+    <script src="analytics.js"></script>
+    <script src="events.js"></script>
+    <script src="cache.js"></script>
+    <script src="history.js"></script>
+    <script src="state.js"></script>
+    <script src="clipboard.js"></script>
+    <script src="downloader.js"></script>
+    <script src="exporter.js"></script>
+    <script src="notifications.js"></script>
+    <script src="router.js"></script>
+    <script src="loader.js"></script>
+    <script src="status.js"></script>
+    <script src="session.js"></script>
+    <script src="time.js"></script>
+    <script src="version.js"></script>
+    <script src="appInfo.js"></script>
+    <script src="health.js"></script>
+    <script src="api.js"></script>
+    <script src="result.js"></script>
 
 </body>
 
