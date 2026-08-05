@@ -34,18 +34,9 @@ text-align:center;
 .subtitle{
 text-align:center;
 color:#666;
-margin-bottom:30px;
 }
 
-.file{
-background:#e0f2fe;
-padding:18px;
-border-radius:12px;
-margin-bottom:25px;
-font-size:18px;
-}
-
-.card{
+.file,.card{
 background:#f8fafc;
 padding:20px;
 margin-top:20px;
@@ -53,129 +44,173 @@ border-radius:12px;
 border-left:5px solid #2563eb;
 }
 
-h2{
-color:#2563eb;
-margin-top:0;
+.file{
+background:#e0f2fe;
 }
 
-.buttons{
-margin-top:35px;
-text-align:center;
+h2{
+color:#2563eb;
 }
 
 button{
 background:#2563eb;
 color:white;
-border:none;
+border:0;
 padding:15px 30px;
 border-radius:10px;
-font-size:16px;
 cursor:pointer;
-margin:10px;
-}
-
-button:hover{
-opacity:.9;
+margin-top:30px;
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="box">
+
 
 <h1>Velora AI Business Report</h1>
 
 <p class="subtitle">
-Analysis completed successfully.
+Your business analysis is complete.
 </p>
+
 
 <div class="file">
 
-<strong>Analyzed File:</strong>
-<span id="fileName">No file selected</span>
+<strong>File:</strong>
+
+<span id="fileName">
+Loading...
+</span>
 
 <br><br>
 
-<strong>File Size:</strong>
-<span id="fileSize">Unknown</span>
+<strong>Size:</strong>
+
+<span id="fileSize">
+-
+</span>
+
+<br><br>
+
+<strong>Excel Rows:</strong>
+
+<span id="rows">
+-
+</span>
+
 
 </div>
+
+
 
 <div class="card">
 
 <h2>Executive Summary</h2>
 
-<p>
-Velora analyzed your uploaded business file and generated the following recommendations.
+<p id="summary">
+-
 </p>
 
 </div>
+
+
 
 <div class="card">
 
 <h2>Problems</h2>
 
-<ul>
-<li>High operating costs detected.</li>
-<li>Sales opportunities are being missed.</li>
-<li>Business performance can be improved.</li>
-</ul>
+<ul id="problems"></ul>
 
 </div>
+
+
 
 <div class="card">
 
 <h2>Opportunities</h2>
 
-<ul>
-<li>Increase revenue from top-performing products.</li>
-<li>Improve customer retention.</li>
-<li>Reduce unnecessary expenses.</li>
-</ul>
+<ul id="opportunities"></ul>
 
 </div>
 
-<div class="card">
 
-<h2>Next Actions</h2>
-
-<ul>
-<li>Review monthly KPIs.</li>
-<li>Create a 30-day improvement plan.</li>
-<li>Track weekly performance.</li>
-</ul>
-
-</div>
-
-<div class="buttons">
 
 <button onclick="location.href='upload.html'">
 Analyze Another File
 </button>
 
-<button onclick="location.href='index.html'">
-Back to Home
-</button>
 
 </div>
 
-</div>
+
 
 <script>
 
-const uploaded = JSON.parse(localStorage.getItem("uploadedFile"));
 
-if(uploaded){
+const report = JSON.parse(
+localStorage.getItem("veloraReport")
+);
 
-document.getElementById("fileName").textContent = uploaded.fileName;
-document.getElementById("fileSize").textContent = uploaded.size + " bytes";
+
+
+if(report){
+
+
+document.getElementById("fileName").textContent =
+report.fileName;
+
+
+document.getElementById("fileSize").textContent =
+report.size + " bytes";
+
+
+if(report.analysis.rows){
+
+document.getElementById("rows").textContent =
+report.analysis.rows;
 
 }
 
+
+document.getElementById("summary").textContent =
+report.analysis.summary;
+
+
+
+report.analysis.problems.forEach(item=>{
+
+let li=document.createElement("li");
+
+li.textContent=item;
+
+document.getElementById("problems").appendChild(li);
+
+});
+
+
+
+report.analysis.opportunities.forEach(item=>{
+
+let li=document.createElement("li");
+
+li.textContent=item;
+
+document.getElementById("opportunities").appendChild(li);
+
+});
+
+
+}
+
+
 </script>
+
 
 </body>
 
