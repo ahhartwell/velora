@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora Report</title>
+<title>Velora AI Report</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f5f7fb;
+margin:0;
 padding:40px;
 }
 
@@ -29,6 +30,20 @@ color:#2563eb;
 text-align:center;
 }
 
+.subtitle{
+text-align:center;
+color:#555;
+margin-bottom:30px;
+}
+
+.file{
+background:#e0f2fe;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+font-size:18px;
+}
+
 .card{
 background:#f1f5f9;
 padding:20px;
@@ -36,70 +51,93 @@ margin-top:20px;
 border-radius:12px;
 }
 
+h2{
+color:#2563eb;
+}
+
 </style>
 
 </head>
-
 
 <body>
 
 <div class="box">
 
-<h1>
-Velora AI Business Report
-</h1>
+<h1>Velora AI Report</h1>
 
+<p class="subtitle">
+Your business analysis is complete.
+</p>
+
+<div class="file">
+
+<strong>Analyzed File:</strong>
+
+<span id="fileName">
+No file selected
+</span>
+
+</div>
 
 <div class="card">
 
 <h2>Executive Summary</h2>
 
 <p>
-AI analyzed your business data and found important insights.
+Velora analyzed your business data and found important insights.
 </p>
 
 </div>
-
 
 <div class="card">
 
 <h2>Problems</h2>
 
 <ul>
-<li>High costs detected</li>
-<li>Sales opportunities missed</li>
-<li>Need better decisions</li>
+<li>High costs detected.</li>
+<li>Sales opportunities missed.</li>
+<li>Need better data-driven decisions.</li>
 </ul>
 
 </div>
-
 
 <div class="card">
 
 <h2>Opportunities</h2>
 
 <ul>
-<li>Improve sales</li>
-<li>Reduce expenses</li>
-<li>Grow profitable products</li>
+<li>Increase revenue from strong products.</li>
+<li>Improve customer retention.</li>
+<li>Build better business strategies.</li>
 </ul>
 
 </div>
-
 
 <div class="card">
 
-<h2>Next Actions</h2>
+<h2>Action Plan</h2>
 
 <ul>
-<li>Review reports</li>
-<li>Create 30-day plan</li>
+<li>Review monthly performance.</li>
+<li>Reduce unnecessary expenses.</li>
+<li>Track improvements every week.</li>
 </ul>
 
 </div>
 
-
 </div>
+
+<script>
+
+const fileName = localStorage.getItem("fileName");
+
+if(fileName){
+
+document.getElementById("fileName").textContent = fileName;
+
+}
+
+</script>
 
 </body>
 
