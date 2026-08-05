@@ -1,81 +1,26 @@
-const fileInput = document.getElementById("file");
+const express = require("express");
+const path = require("path");
+const dotenv = require("dotenv");
 
+const analyzeRoute = require("./analyzeRoute");
 
-function showName(){
+dotenv.config();
 
-    const file = fileInput.files[0];
+const app = express();
 
-    if(file){
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-        document.getElementById("fileName").textContent = file.name;
+app.use(express.static(path.join(__dirname)));
 
-    }
+app.use("/api", analyzeRoute);
 
-}
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
+const PORT = process.env.PORT || 3000;
 
-async function analyze(){
-
-    const file = fileInput.files[0];
-
-
-    if(!file){
-
-        alert("Please upload a file first");
-
-        return;
-
-    }
-
-
-    const formData = new FormData();
-
-    formData.append("file", file);
-
-
-    try{
-
-
-        const response = await fetch("/upload",{
-
-            method:"POST",
-
-            body:formData
-
-        });
-
-
-        const data = await response.json();
-
-
-        if(data.success){
-
-
-            localStorage.setItem(
-                "veloraReport",
-                JSON.stringify(data)
-            );
-
-
-            window.location.href="loading.html";
-
-
-        }else{
-
-
-            alert(data.message);
-
-
-        }
-
-
-    }catch(error){
-
-
-        alert("Server connection failed.");
-
-
-    }
-
-
-}
+app.listen(PORT, () => {
+    console.log(`Velora is running on http://localhost:${PORT}`);
+});
