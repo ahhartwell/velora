@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora - Upload Files</title>
+<title>Velora Upload</title>
 
 <style>
 
@@ -29,111 +29,93 @@ box-shadow:0 10px 30px rgba(0,0,0,.08);
 
 h1{
 color:#2563eb;
-margin-bottom:10px;
 }
 
 p{
 color:#666;
-margin-bottom:30px;
+font-size:18px;
 }
 
 .upload{
 border:2px dashed #2563eb;
-border-radius:15px;
 padding:40px;
+border-radius:15px;
 background:#f8fbff;
 }
 
-input[type=file]{
+input{
 margin-top:20px;
 }
 
 #fileName{
 margin-top:20px;
-font-weight:bold;
 color:#2563eb;
+font-weight:bold;
 }
 
 button{
 margin-top:30px;
 background:#2563eb;
 color:white;
-border:none;
+border:0;
 padding:15px 35px;
-font-size:16px;
 border-radius:10px;
 cursor:pointer;
-}
-
-button:hover{
-opacity:.9;
+font-size:16px;
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="box">
 
-<h1>Upload your files</h1>
+
+<h1>
+Upload your files
+</h1>
+
 
 <p>
-Upload your business files and let Velora analyze your company.
+Upload Excel, PDF, or Word files and let Velora analyze your company.
 </p>
+
 
 <div class="upload">
 
-<p>Choose an Excel, PDF, or Word file</p>
 
-<input type="file" id="file" onchange="showName()">
+<input 
+type="file" 
+id="file"
+accept=".xlsx,.pdf,.docx"
+onchange="showName()">
+
 
 <div id="fileName">
 No file selected
 </div>
 
+
 </div>
+
+
 
 <button onclick="analyze()">
 Analyze
 </button>
 
+
+
 </div>
 
-<script>
 
-function showName(){
 
-const file=document.getElementById("file").files[0];
+<script src="app.js"></script>
 
-if(file){
-
-document.getElementById("fileName").textContent=file.name;
-
-}
-
-}
-
-function analyze(){
-
-const file=document.getElementById("file").files[0];
-
-if(!file){
-
-alert("Please upload a file first");
-
-return;
-
-}
-
-localStorage.setItem("fileName",file.name);
-
-window.location.href="result.html";
-
-}
-
-</script>
 
 </body>
 
