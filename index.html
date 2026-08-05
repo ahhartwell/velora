@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora AI Business Analyst</title>
+    <meta charset="UTF-8">
 
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-margin:0;
-padding:40px;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.box{
-max-width:900px;
-margin:auto;
-background:white;
-padding:50px;
-text-align:center;
-border-radius:20px;
-}
+    <title>Velora AI Business Analyst</title>
 
-h1{
-color:#2563eb;
-font-size:42px;
-}
-
-p{
-color:#555;
-font-size:18px;
-}
-
-button{
-background:#2563eb;
-color:white;
-border:0;
-padding:16px 35px;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="box">
+    <div class="container">
 
-<h1>Velora AI Business Analyst</h1>
+        <h1>Velora</h1>
 
-<p>
-Upload your business files and let AI discover problems,
-opportunities, insights, and next actions.
-</p>
+        <h2>AI Business Analyst</h2>
 
-<button onclick="location.href='upload.html'">
-Upload your files
-</button>
+        <p>
+            Upload your business data and let AI discover
+            problems, opportunities and recommendations.
+        </p>
 
-</div>
+        <textarea
+            id="businessData"
+            rows="14"
+            placeholder="Paste your business data here..."
+        ></textarea>
+
+        <br><br>
+
+        <button onclick="analyzeBusiness()">
+            Analyze Business
+        </button>
+
+    </div>
+
+    <script src="constants.js"></script>
+    <script src="config.js"></script>
+    <script src="environment.js"></script>
+    <script src="browser.js"></script>
+    <script src="device.js"></script>
+    <script src="network.js"></script>
+    <script src="storage.js"></script>
+    <script src="storageManager.js"></script>
+    <script src="preferences.js"></script>
+    <script src="helpers.js"></script>
+    <script src="utils.js"></script>
+    <script src="formatter.js"></script>
+    <script src="validator.js"></script>
+    <script src="logger.js"></script>
+    <script src="loggerClient.js"></script>
+    <script src="analytics.js"></script>
+    <script src="events.js"></script>
+    <script src="cache.js"></script>
+    <script src="history.js"></script>
+    <script src="state.js"></script>
+    <script src="clipboard.js"></script>
+    <script src="downloader.js"></script>
+    <script src="exporter.js"></script>
+    <script src="notifications.js"></script>
+    <script src="router.js"></script>
+    <script src="loader.js"></script>
+    <script src="status.js"></script>
+    <script src="session.js"></script>
+    <script src="time.js"></script>
+    <script src="version.js"></script>
+    <script src="appInfo.js"></script>
+    <script src="health.js"></script>
+    <script src="api.js"></script>
+    <script src="upload.js"></script>
 
 </body>
 
