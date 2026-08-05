@@ -36,13 +36,14 @@ text-align:center;
 color:#666;
 }
 
-.info,
-.card{
+.info,.card{
+
 background:#f8fafc;
 padding:20px;
 margin-top:20px;
 border-radius:12px;
 border-left:5px solid #2563eb;
+
 }
 
 .info{
@@ -54,13 +55,15 @@ color:#2563eb;
 }
 
 button{
+
 background:#2563eb;
 color:white;
 border:0;
 padding:15px 30px;
 border-radius:10px;
 cursor:pointer;
-margin-top:30px;
+margin:10px;
+
 }
 
 </style>
@@ -87,35 +90,14 @@ Your business analysis is complete.
 
 <div class="info">
 
-<p>
-<strong>File Name:</strong>
-<span id="fileName">-</span>
-</p>
+<p><strong>File Name:</strong>
+<span id="fileName">-</span></p>
 
-<p>
-<strong>File Size:</strong>
-<span id="fileSize">-</span>
-</p>
+<p><strong>File Size:</strong>
+<span id="fileSize">-</span></p>
 
-<p>
-<strong>Records:</strong>
-<span id="rows">-</span>
-</p>
-
-<p>
-<strong>Columns:</strong>
-<span id="columns">-</span>
-</p>
-
-<p>
-<strong>Total Numbers:</strong>
-<span id="totalNumbers">-</span>
-</p>
-
-<p>
-<strong>Sales Total:</strong>
-<span id="sales">-</span>
-</p>
+<p><strong>Records:</strong>
+<span id="rows">-</span></p>
 
 </div>
 
@@ -123,13 +105,9 @@ Your business analysis is complete.
 
 <div class="card">
 
-<h2>
-Executive Summary
-</h2>
+<h2>Executive Summary</h2>
 
-<p id="summary">
--
-</p>
+<p id="summary">-</p>
 
 </div>
 
@@ -137,9 +115,7 @@ Executive Summary
 
 <div class="card">
 
-<h2>
-Problems Detected
-</h2>
+<h2>Problems Detected</h2>
 
 <ul id="problems"></ul>
 
@@ -149,9 +125,7 @@ Problems Detected
 
 <div class="card">
 
-<h2>
-Business Opportunities
-</h2>
+<h2>Business Opportunities</h2>
 
 <ul id="opportunities"></ul>
 
@@ -159,29 +133,15 @@ Business Opportunities
 
 
 
-<div class="card">
-
-<h2>
-Next Actions
-</h2>
-
-<ul>
-
-<li>Review business performance.</li>
-
-<li>Reduce unnecessary costs.</li>
-
-<li>Create improvement plan.</li>
-
-</ul>
-
-</div>
-
+<button onclick="downloadPDF()">
+Download PDF Report
+</button>
 
 
 <button onclick="location.href='upload.html'">
 Analyze Another File
 </button>
+
 
 
 </div>
@@ -216,29 +176,7 @@ report.analysis.summary;
 
 
 
-if(report.analysis.columns){
-
-document.getElementById("columns").textContent =
-report.analysis.columns.join(", ");
-
-}
-
-
-
-if(report.analysis.metrics){
-
-document.getElementById("totalNumbers").textContent =
-report.analysis.metrics.totalNumbers || "-";
-
-
-document.getElementById("sales").textContent =
-report.analysis.metrics.sales || "-";
-
-}
-
-
-
-report.analysis.problems.forEach(function(item){
+report.analysis.problems.forEach(item=>{
 
 let li=document.createElement("li");
 
@@ -250,7 +188,7 @@ document.getElementById("problems").appendChild(li);
 
 
 
-report.analysis.opportunities.forEach(function(item){
+report.analysis.opportunities.forEach(item=>{
 
 let li=document.createElement("li");
 
@@ -262,6 +200,52 @@ document.getElementById("opportunities").appendChild(li);
 
 
 }
+
+
+
+async function downloadPDF(){
+
+
+const report =
+JSON.parse(localStorage.getItem("veloraReport"));
+
+
+
+const response =
+await fetch("/create-pdf",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify(report)
+
+});
+
+
+
+const data =
+await response.json();
+
+
+
+if(data.success){
+
+window.open(data.file);
+
+}else{
+
+alert("PDF creation failed");
+
+}
+
+
+}
+
 
 
 </script>
