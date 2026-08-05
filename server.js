@@ -6,6 +6,7 @@ const fs = require("fs");
 const XLSX = require("xlsx");
 const pdf = require("pdf-parse");
 const mammoth = require("mammoth");
+const createPDF = require("./pdf-report");
 
 const app = express();
 
@@ -72,18 +73,15 @@ async function analyzeFile(file){
         XLSX.utils.sheet_to_json(sheet);
 
 
-
         result.rows = data.length;
 
 
-
-        if(data.length > 0){
+        if(data.length){
 
             result.columns =
             Object.keys(data[0]);
 
         }
-
 
 
         let totalNumbers = 0;
@@ -104,49 +102,12 @@ async function analyzeFile(file){
         });
 
 
-
         result.metrics.totalNumbers =
         totalNumbers;
 
 
-
-        let salesColumn =
-        result.columns.find(col =>
-            col.toLowerCase().includes("sales")
-            ||
-            col.toLowerCase().includes("revenue")
-            ||
-            col.toLowerCase().includes("amount")
-        );
-
-
-
-        if(salesColumn){
-
-            let salesTotal = 0;
-
-
-            data.forEach(row=>{
-
-                if(typeof row[salesColumn] === "number"){
-
-                    salesTotal += row[salesColumn];
-
-                }
-
-            });
-
-
-            result.metrics.sales =
-            salesTotal;
-
-        }
-
-
-
         result.summary =
-        "Velora analyzed your Excel business data and generated business insights.";
-
+        "Velora analyzed your Excel business data and generated insights.";
 
     }
 
@@ -168,8 +129,7 @@ async function analyzeFile(file){
 
 
         result.summary =
-        "Velora analyzed your PDF business report successfully.";
-
+        "Velora analyzed your PDF business report.";
 
     }
 
@@ -191,19 +151,7 @@ async function analyzeFile(file){
 
 
         result.summary =
-        "Velora analyzed your Word business document successfully.";
-
-
-    }
-
-
-
-    else{
-
-
-        result.summary =
-        "File uploaded successfully.";
-
+        "Velora analyzed your Word document.";
 
     }
 
@@ -211,22 +159,20 @@ async function analyzeFile(file){
 
     result.problems = [
 
-        "Review business costs and expenses.",
-        "Analyze performance indicators.",
-        "Find areas that need improvement."
+        "Review business costs.",
+        "Analyze performance.",
+        "Improve decision making."
 
     ];
-
 
 
     result.opportunities = [
 
         "Increase profitable products.",
         "Improve customer growth.",
-        "Optimize business operations."
+        "Optimize expenses."
 
     ];
-
 
 
     return result;
@@ -251,10 +197,8 @@ app.post("/upload",upload.single("file"),async(req,res)=>{
     }
 
 
-
     const analysis =
     await analyzeFile(req.file);
-
 
 
     res.json({
@@ -271,6 +215,49 @@ app.post("/upload",upload.single("file"),async(req,res)=>{
 
 
 });
+
+
+
+app.post("/create-pdf",(req,res)=>{
+
+
+    try{
+
+
+        const file =
+        createPDF(req.body);
+
+
+        res.json({
+
+            success:true,
+
+            file:"/"+file
+
+        });
+
+
+    }catch(error){
+
+
+        res.json({
+
+            success:false,
+
+            message:"PDF generation failed"
+
+        });
+
+
+    }
+
+
+});
+
+
+
+app.use("/Velora-Business-Report.pdf",
+express.static(__dirname));
 
 
 
@@ -291,7 +278,7 @@ app.listen(PORT,()=>{
 
     console.log("--------------------------------");
     console.log("Velora AI Business Analyst");
-    console.log("Server running at:");
+    console.log("Server running:");
     console.log("http://localhost:3000");
     console.log("--------------------------------");
 
