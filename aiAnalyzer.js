@@ -4,79 +4,53 @@ const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-
-async function analyzeBusinessData(data) {
+async function aiAnalyzer(data) {
 
     const prompt = `
-You are Velora AI Business Analyst.
+You are an expert AI Business Analyst.
 
-Analyze the following business data.
-
-Your mission:
-- Identify the most important business problems.
-- Discover growth opportunities.
-- Suggest practical actions.
-
-Return ONLY valid JSON.
-
-Format:
-
-{
-  "summary": "",
-  "problems": [
-    "",
-    "",
-    ""
-  ],
-  "opportunities": [
-    "",
-    "",
-    ""
-  ],
-  "recommendations": [
-    "",
-    "",
-    ""
-  ]
-}
-
+Analyze the following business information.
 
 Business Data:
 
 ${data}
+
+Return ONLY valid JSON using this structure:
+
+{
+  "summary": "...",
+  "problems": [
+    "...",
+    "...",
+    "..."
+  ],
+  "opportunities": [
+    "...",
+    "...",
+    "..."
+  ],
+  "recommendations": [
+    "...",
+    "...",
+    "..."
+  ]
+}
 `;
 
+    const response = await client.responses.create({
 
-    const response = await client.chat.completions.create({
+        model: "gpt-4.1-mini",
 
-        model: "gpt-5-mini",
+        input: prompt,
 
-        response_format: {
-            type: "json_object"
-        },
-
-        messages: [
-            {
-                role: "system",
-                content: "You are Velora AI Business Analyst."
-            },
-            {
-                role: "user",
-                content: prompt
-            }
-        ],
-
-        temperature: 0.2
+        temperature: 0.3
 
     });
 
+    const text = response.output_text.trim();
 
-    const analysis = response.choices[0].message.content;
-
-
-    return JSON.parse(analysis);
+    return JSON.parse(text);
 
 }
 
-
-module.exports = analyzeBusinessData;
+module.exports = aiAnalyzer;
