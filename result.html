@@ -34,27 +34,33 @@ text-align:center;
 .subtitle{
 text-align:center;
 color:#666;
-margin-bottom:30px;
 }
 
 .info,
 .card{
+
 background:#f8fafc;
 padding:20px;
 margin-top:20px;
 border-radius:12px;
 border-left:5px solid #2563eb;
+
 }
 
 .info{
+
 background:#e0f2fe;
+
 }
 
 h2{
+
 color:#2563eb;
+
 }
 
 button{
+
 background:#2563eb;
 color:white;
 border:0;
@@ -62,6 +68,7 @@ padding:15px 30px;
 border-radius:10px;
 cursor:pointer;
 margin-top:30px;
+
 }
 
 </style>
@@ -93,15 +100,24 @@ Your business analysis is complete.
 <span id="fileName">-</span>
 </p>
 
+
 <p>
 <strong>File Size:</strong>
 <span id="fileSize">-</span>
 </p>
 
+
 <p>
-<strong>Data Records:</strong>
+<strong>Records:</strong>
 <span id="rows">-</span>
 </p>
+
+
+<p>
+<strong>Columns:</strong>
+<span id="columns">-</span>
+</p>
+
 
 </div>
 
@@ -154,7 +170,9 @@ Next Actions
 <ul>
 
 <li>Review business performance.</li>
+
 <li>Reduce unnecessary costs.</li>
+
 <li>Create improvement plan.</li>
 
 </ul>
@@ -175,9 +193,9 @@ Analyze Another File
 <script>
 
 
-const report = JSON.parse(
-localStorage.getItem("veloraReport")
-);
+const report =
+JSON.parse(localStorage.getItem("veloraReport"));
+
 
 
 if(report){
@@ -196,10 +214,15 @@ report.analysis.summary;
 
 
 
-if(report.analysis.rows){
-
 document.getElementById("rows").textContent =
-report.analysis.rows;
+report.analysis.rows || "-";
+
+
+
+if(report.analysis.columns){
+
+document.getElementById("columns").textContent =
+report.analysis.columns.join(", ");
 
 }
 
