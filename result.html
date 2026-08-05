@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velora AI Report</title>
+<title>Velora AI Business Report</title>
 
 <style>
 
@@ -34,9 +34,11 @@ text-align:center;
 .subtitle{
 text-align:center;
 color:#666;
+margin-bottom:30px;
 }
 
-.file,.card{
+.info,
+.card{
 background:#f8fafc;
 padding:20px;
 margin-top:20px;
@@ -44,7 +46,7 @@ border-radius:12px;
 border-left:5px solid #2563eb;
 }
 
-.file{
+.info{
 background:#e0f2fe;
 }
 
@@ -73,37 +75,33 @@ margin-top:30px;
 <div class="box">
 
 
-<h1>Velora AI Business Report</h1>
+<h1>
+Velora AI Business Report
+</h1>
+
 
 <p class="subtitle">
 Your business analysis is complete.
 </p>
 
 
-<div class="file">
 
-<strong>File:</strong>
+<div class="info">
 
-<span id="fileName">
-Loading...
-</span>
+<p>
+<strong>File Name:</strong>
+<span id="fileName">-</span>
+</p>
 
-<br><br>
+<p>
+<strong>File Size:</strong>
+<span id="fileSize">-</span>
+</p>
 
-<strong>Size:</strong>
-
-<span id="fileSize">
--
-</span>
-
-<br><br>
-
-<strong>Excel Rows:</strong>
-
-<span id="rows">
--
-</span>
-
+<p>
+<strong>Data Records:</strong>
+<span id="rows">-</span>
+</p>
 
 </div>
 
@@ -111,7 +109,9 @@ Loading...
 
 <div class="card">
 
-<h2>Executive Summary</h2>
+<h2>
+Executive Summary
+</h2>
 
 <p id="summary">
 -
@@ -123,7 +123,9 @@ Loading...
 
 <div class="card">
 
-<h2>Problems</h2>
+<h2>
+Problems Detected
+</h2>
 
 <ul id="problems"></ul>
 
@@ -133,9 +135,29 @@ Loading...
 
 <div class="card">
 
-<h2>Opportunities</h2>
+<h2>
+Business Opportunities
+</h2>
 
 <ul id="opportunities"></ul>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+Next Actions
+</h2>
+
+<ul>
+
+<li>Review business performance.</li>
+<li>Reduce unnecessary costs.</li>
+<li>Create improvement plan.</li>
+
+</ul>
 
 </div>
 
@@ -158,7 +180,6 @@ localStorage.getItem("veloraReport")
 );
 
 
-
 if(report){
 
 
@@ -170,6 +191,11 @@ document.getElementById("fileSize").textContent =
 report.size + " bytes";
 
 
+document.getElementById("summary").textContent =
+report.analysis.summary;
+
+
+
 if(report.analysis.rows){
 
 document.getElementById("rows").textContent =
@@ -178,12 +204,8 @@ report.analysis.rows;
 }
 
 
-document.getElementById("summary").textContent =
-report.analysis.summary;
 
-
-
-report.analysis.problems.forEach(item=>{
+report.analysis.problems.forEach(function(item){
 
 let li=document.createElement("li");
 
@@ -195,7 +217,7 @@ document.getElementById("problems").appendChild(li);
 
 
 
-report.analysis.opportunities.forEach(item=>{
+report.analysis.opportunities.forEach(function(item){
 
 let li=document.createElement("li");
 
